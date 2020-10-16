@@ -2,22 +2,22 @@ import torch
 import torch.nn as nn
 import util
 
-from nets.rich_net import RichNet
+from nets.classic_net import get_resnet18
 from exps.trainer import ToyboxTrainer
 
 torch.backends.cudnn.benchmark = True
 
 
 def exp_main(ratios, trs, nview):
-    net_name = 'richnet_resnet18'
-    net = RichNet(nview_all=len(ratios) * len(trs) * nview)
+    net_name = 'resnet18'
+    net = get_resnet18(pretrained=False)
     net.cuda()
 
     optimizer = torch.optim.Adam(net.parameters(), lr=5e-05, weight_decay=0.0)
     loss_func = nn.CrossEntropyLoss()
     hyper_p = util.HyperP(
         lr=0.5,
-        batch_size=4,
+        batch_size=64,
         num_workers=0,
         epochs=300,
     )
@@ -25,7 +25,7 @@ def exp_main(ratios, trs, nview):
         tr=trs,
         nview=nview,
         ratio=ratios,
-        mode='rich',
+        mode='sv',
         net=net,
         net_name=net_name,
         optimizer=optimizer,
@@ -38,7 +38,7 @@ def exp_main(ratios, trs, nview):
 
 def main():
     ratios = [100]
-    trs = ['rzplus', 'rzminus', 'rxplus', 'rxminus']
+    trs = ['rzplus', 'rzminus']
     nview = 12  # need to <18
     exp_main(ratios, trs, nview)
 

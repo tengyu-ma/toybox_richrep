@@ -90,7 +90,7 @@ class ToyboxTrainer:
                 tr=self.tr,
                 nview=self.nview,
                 ratio=self.ratio,
-                mode='rich',
+                mode=self.mode,
                 dataset='train',
                 transform=transform
             ),
@@ -107,7 +107,7 @@ class ToyboxTrainer:
                 tr=self.tr,
                 nview=self.nview,
                 ratio=self.ratio,
-                mode='rich',
+                mode=self.mode,
                 dataset='test',
                 transform=transform,
             ),
