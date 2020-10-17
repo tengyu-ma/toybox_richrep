@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import util
 
-from nets.classic_net import get_resnet18
+from nets.classic_net import get_classicnet
 from exps.trainer import ToyboxTrainer
 
 torch.backends.cudnn.benchmark = True
@@ -10,7 +10,7 @@ torch.backends.cudnn.benchmark = True
 
 def exp_main(ratios, trs, nview):
     net_name = 'resnet18'
-    net = get_resnet18(pretrained=False)
+    net = get_classicnet(net_name=net_name, pretrained=False)
     net.cuda()
 
     optimizer = torch.optim.Adam(net.parameters(), lr=5e-05, weight_decay=0.0)
