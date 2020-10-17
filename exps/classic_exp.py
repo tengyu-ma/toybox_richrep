@@ -26,6 +26,7 @@ def exp_main(ratios, trs, nview):
         nview=nview,
         ratio=ratios,
         mode='sv',
+        img_size=(299, 299),
         net=net,
         net_name=net_name,
         optimizer=optimizer,

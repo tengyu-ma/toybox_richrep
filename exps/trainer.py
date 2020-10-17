@@ -14,12 +14,13 @@ from toybox_data import ToyboxData
 
 
 class ToyboxTrainer:
-    def __init__(self, tr, nview, ratio, mode, net, net_name, optimizer, loss_func, hyper_p):
+    def __init__(self, tr, nview, ratio, mode, img_size, net, net_name, optimizer, loss_func, hyper_p):
         # Toybox data hyper-parameters
         self.tr = tr
         self.nview = nview
         self.ratio = ratio
         self.mode = mode
+        self.img_size = img_size
 
         # Training hyper-parameters
         self.net = net
@@ -61,7 +62,10 @@ class ToyboxTrainer:
                 ratio=self.ratio,
                 mode='sv',  # mv uses the same mean std as sv
                 dataset='train',
-                transform=transforms.ToTensor()
+                transform=transforms.Compose([
+                    transforms.Resize(self.img_size),
+                    transforms.ToTensor(),
+                ])
             )
             data_loader = torch.utils.data.DataLoader(
                 data,
@@ -80,6 +84,7 @@ class ToyboxTrainer:
             pickle.dump(mean_std_cache, open(conf.ToyboxMeanStdCacheFile, 'wb'))
 
         transform = transforms.Compose([
+            transforms.Resize(self.img_size),
             transforms.ToTensor(),
             transforms.Normalize(mean, std),
         ])
