@@ -4,4 +4,4 @@ data/__pycache__/
 exps/__pycache__/
 nets/__pycache__/
 
-exps/cache
+exps/cache/*
