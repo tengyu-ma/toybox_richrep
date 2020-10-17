@@ -6,6 +6,7 @@ import imageio
 import numpy as np
 import pandas as pd
 
+from PIL import Image
 from itertools import product
 from glob import glob
 
@@ -91,7 +92,7 @@ class ToyboxData(torch.utils.data.Dataset):
             info = self.df.loc[index]
             label = conf.ALL_CA.index(info.ca)
 
-            img = imageio.imread(info.path)
+            img = Image.open(info.path)
             if self.transform is not None:
                 img = self.transform(img)
             path = info.path
@@ -106,7 +107,7 @@ class ToyboxData(torch.utils.data.Dataset):
             rich_views['ca'] = info.ca
             rich_views['no'] = info.no
             rich_df = pd.merge(self.df, rich_views, on=['ca', 'no', 'tr', 'view_index', 'ratio'])
-            imgs = [imageio.imread(p) for p in rich_df.path]
+            imgs = [Image.open(p) for p in rich_df.path]
             if self.transform is not None:
                 imgs = [self.transform(img) for img in imgs]
 

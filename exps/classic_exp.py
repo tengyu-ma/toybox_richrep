@@ -8,9 +8,8 @@ from exps.trainer import ToyboxTrainer
 torch.backends.cudnn.benchmark = True
 
 
-def exp_main(ratios, trs, nview):
-    net_name = 'resnet18'
-    net = get_classicnet(net_name=net_name, pretrained=False)
+def exp_main(ratios, trs, nview, net_name):
+    net = get_classicnet(net_name=net_name, pretrained=True)
     net.cuda()
 
     optimizer = torch.optim.Adam(net.parameters(), lr=5e-05, weight_decay=0.0)
@@ -39,9 +38,10 @@ def exp_main(ratios, trs, nview):
 
 def main():
     ratios = [100]
-    trs = ['rzplus', 'rzminus']
+    trs = ['rzplus', 'rzminus', 'rxplus', 'rxminus']
     nview = 12  # need to <18
-    exp_main(ratios, trs, nview)
+    net_name = 'vgg11'
+    exp_main(ratios, trs, nview, net_name)
 
 
 if __name__ == '__main__':
