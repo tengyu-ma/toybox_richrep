@@ -21,9 +21,9 @@ if __name__ == '__main__':
 
     for r in ratios:
         for net_name in net_names:
-            if net_name == 'classic':
+            if net_type == 'classic':
                 classic_exp.exp_main(ratios=[r], trs=trs, nview=nview, net_name=net_name)
-            elif net_name == 'rich':
+            elif net_type == 'rich':
                 rich_exp.exp_main(ratios=[r], trs=trs, nview=nview)
             else:
                 raise ValueError(f'Invalid net type {net_type}')

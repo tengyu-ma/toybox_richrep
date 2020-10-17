@@ -38,9 +38,9 @@ def exp_main(ratios, trs, nview, net_name):
 
 def main():
     ratios = [100]
-    trs = ['rzplus', 'rzminus', 'rxplus', 'rxminus']
+    trs = ['rzplus', 'rzminus']
     nview = 12  # need to <18
-    net_name = 'vgg11'
+    net_name = 'resnext50_32x4d'
     exp_main(ratios, trs, nview, net_name)
 
 

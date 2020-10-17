@@ -14,14 +14,11 @@ def get_classicnet(pretrained, net_name):
     assert net_name in net_candidates, ValueError(f'Invalid net_name {net_name}')
 
     net = getattr(models, net_name)(pretrained=pretrained)
-    if 'resnet' in net_name:
-        in_features = net.fc.in_features
-        net.fc = nn.Linear(in_features, 12)
-    if 'inception' in net_name:
-        in_features = net.fc.in_features
-        net.fc = nn.Linear(in_features, 12)
     if 'vgg' in net_name:
         in_features = net.classifier[-1].in_features
         net.classifier[-1] = nn.Linear(in_features, 12)
+    else:
+        in_features = net.fc.in_features
+        net.fc = nn.Linear(in_features, 12)
 
     return net
