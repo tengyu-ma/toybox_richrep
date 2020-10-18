@@ -61,6 +61,8 @@ class ToyboxData(torch.utils.data.Dataset):
             )
             view_index = [i for i in range(18) for _ in range(4)] * (len(self.all_files) // 18 // 4)
             df['view_index'] = view_index
+            if not os.path.exists(conf.CacheDir):
+                os.makedirs(conf.CacheDir)
             df.to_csv(os.path.join(conf.CacheDir, 'squares_same_nview.csv'))
         return df[df.dataset == self.dataset]
 
