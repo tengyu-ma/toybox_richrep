@@ -34,7 +34,7 @@ class ToyboxTrainer:
 
         # Naming conventions
         self.exp_toyboxdata = f'{tr_str}-{str(nview)}-{ratio_str}-{mode}'
-        self.exp_name = f'{net_name}-{self.exp_toyboxdata}'
+        self.exp_name = f'{hyper_p.pretrain}-{net_name}-{self.exp_toyboxdata}'
         self.log_dir = f'{conf.ToyboxLogDir}/{self.exp_name}'
         self.train_loader, self.test_loader = self.get_dataloader()
 
