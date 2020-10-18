@@ -8,18 +8,18 @@ from exps.trainer import ToyboxTrainer
 torch.backends.cudnn.benchmark = True
 
 
-def exp_main(ratios, trs, nview, net_name):
-    net = get_classicnet(net_name=net_name, pretrained=True)
+def exp_main(ratios, trs, nview, net_name, pretrained, batch_size, epochs, preload):
+    net = get_classicnet(net_name=net_name, pretrained=pretrained)
     net.cuda()
 
     optimizer = torch.optim.Adam(net.parameters(), lr=5e-05, weight_decay=0.0)
     loss_func = nn.CrossEntropyLoss()
     hyper_p = util.HyperP(
         lr=0.5,
-        batch_size=64,
+        batch_size=batch_size,
         num_workers=0,
-        epochs=300,
-        preload=False,
+        epochs=epochs,
+        preload=preload,
     )
     tb_trainer = ToyboxTrainer(
         tr=trs,

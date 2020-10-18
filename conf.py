@@ -30,7 +30,7 @@ ALL_TR = ['rxminus', 'rxplus', 'ryminus', 'ryplus', 'rzminus', 'rzplus']
 ALL_NVIEW = 18
 ALL_RATIO = [100, 75, 50, 25]
 
-TEST_ALL = True
+TEST_ALL = False
 
 ALL_6FPS = list(range(1, 500))
 ALL_1FPS = list(range(1, 500, 6))
