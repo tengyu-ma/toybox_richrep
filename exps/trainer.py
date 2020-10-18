@@ -62,6 +62,7 @@ class ToyboxTrainer:
                 ratio=self.ratio,
                 mode='sv',  # mv uses the same mean std as sv
                 dataset='train',
+                preload=self.hyper_p.preload,
                 transform=transforms.Compose([
                     transforms.Resize(self.img_size),
                     transforms.ToTensor(),
@@ -97,7 +98,8 @@ class ToyboxTrainer:
                 ratio=self.ratio,
                 mode=self.mode,
                 dataset='train',
-                transform=transform
+                preload=self.hyper_p.preload,
+                transform=transform,
             ),
             batch_size=self.hyper_p.batch_size,
             shuffle=True,
@@ -114,6 +116,7 @@ class ToyboxTrainer:
                 ratio=conf.ALL_RATIO if conf.TEST_ALL else self.ratio,
                 mode=self.mode,
                 dataset='test',
+                preload=self.hyper_p.preload,
                 transform=transform,
             ),
             batch_size=self.hyper_p.batch_size,

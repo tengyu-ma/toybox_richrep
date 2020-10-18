@@ -19,6 +19,7 @@ def exp_main(ratios, trs, nview, net_name):
         batch_size=64,
         num_workers=0,
         epochs=300,
+        preload=False,
     )
     tb_trainer = ToyboxTrainer(
         tr=trs,
