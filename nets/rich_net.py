@@ -20,26 +20,3 @@ class RichNet(nn.Module):
         y = self.fc(x)
 
         return y
-
-
-# class MVCNN(Model):
-#     def __init__(self, name, model, nclasses=12, cnn_name='vgg11', num_views=12):
-#         super(MVCNN, self).__init__(name)
-#
-#         self.nclasses = nclasses
-#         self.num_views = num_views
-#         self.use_resnet = cnn_name.startswith('resnet')
-#
-#         if self.use_resnet:
-#             self.net_1 = nn.Sequential(*list(model.net.children())[:-1])
-#             self.net_2 = model.net.fc
-#         else:
-#             self.net_1 = model.net_1
-#             self.net_2 = model.net_2
-#
-#     def forward(self, x):
-#         y = self.net_1(x)
-#         y = y.view(
-#             1,
-#         )
-#         return self.net_2(torch.max(y, 1)[0].view(y.shape[0], -1))

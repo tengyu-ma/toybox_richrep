@@ -26,11 +26,9 @@ TEST_NO = {
     'car': [6, 11, 13],
 }
 
-ALL_TR = [
-    'absent', 'present', 'hodgepodge',
-    'rxminus', 'rxplus', 'ryminus', 'ryplus', 'rzminus', 'rzplus',
-    'tx', 'ty', 'tz'
-]
+ALL_TR = ['rxminus', 'rxplus', 'ryminus', 'ryplus', 'rzminus', 'rzplus']
+ALL_NVIEW = 18
+ALL_RATIO = [100, 75, 50, 25]
 
 ALL_6FPS = list(range(1, 500))
 ALL_1FPS = list(range(1, 500, 6))

@@ -109,9 +109,9 @@ class ToyboxTrainer:
         test_loader = torch.utils.data.DataLoader(
             Data(
                 root=conf.ToyboxDataDir,
-                tr=self.tr,
-                nview=self.nview,
-                ratio=self.ratio,
+                tr=conf.ALL_TR,
+                nview=conf.ALL_NVIEW,
+                ratio=conf.ALL_RATIO,
                 mode=self.mode,
                 dataset='test',
                 transform=transform,
